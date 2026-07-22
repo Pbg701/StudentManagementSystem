@@ -1,160 +1,422 @@
-# Student Management System
+ Student Management System
+A comprehensive full-stack Student Management System built with ASP.NET Core Web API and React with Material-UI, following Clean Architecture principles and enterprise-grade best practices.
 
-A comprehensive Student Management System built with ASP.NET Core Web API, following Clean Architecture principles and enterprise-grade best practices.
+📋 Project Overview
+This project demonstrates a production-ready Student Management System with:
 
-## 📋 Project Overview
+Backend Features
+Clean Architecture with proper separation of concerns (Domain, Application, Infrastructure, API)
 
-This project demonstrates a full-featured Student Management System with:
+JWT Authentication for secure API endpoints
 
-- **Clean Architecture** with proper separation of concerns (Domain, Application, Infrastructure, API)
-- **JWT Authentication** for secure API endpoints
-- **Global Exception Handling** with custom middleware
-- **Structured Logging** with Serilog
-- **Swagger API Documentation** with JWT support
-- **Pagination and Search** functionality
-- **Audit Fields** (CreatedDate, UpdatedDate, IsDeleted)
-- **FluentValidation** for input validation
-- **AutoMapper** for DTO mapping
-- **Unit Testing** with xUnit and Moq
-- **Docker Support** for containerization
-- **CORS Support** for React frontend integration
+Global Exception Handling with custom middleware
 
-## 🚀 Prerequisites
+Structured Logging with Serilog
 
-- **.NET SDK 10.0.201** (or later)
-- SQL Server / SQL Server Express
-- Visual Studio 2022 (17.14 or later) or Visual Studio Code
-- Docker Desktop (optional)
+Swagger API Documentation with JWT support
 
-## 🛠️ Technology Stack
+Pagination and Search functionality
 
-### Backend
+Audit Fields (CreatedDate, UpdatedDate, IsDeleted)
 
-- **Framework:** ASP.NET Core Web API
-- **.NET SDK:** 10.0.201
-- **ORM:** Entity Framework Core 9
-- **Database:** SQL Server
-- **Authentication:** JWT (JSON Web Tokens)
-- **Validation:** FluentValidation 11
-- **Mapping:** AutoMapper 16
-- **Logging:** Serilog
-- **Testing:** xUnit & Moq
-- **API Documentation:** Swagger (Swashbuckle)
-- **Containerization:** Docker (Optional)
+FluentValidation for input validation
 
-### Architecture
+AutoMapper for DTO mapping
 
-- **Domain Layer:** Entities, Interfaces, Exceptions
-- **Application Layer:** DTOs, Services, Validators, Mappings
-- **Infrastructure Layer:** Data, Repositories, Unit of Work
-- **API Layer:** Controllers, Middleware, Authentication
+Unit Testing with xUnit and Moq
 
-## ▶️ Run the Project
+Docker Support for containerization
 
-### 1. Clone the Repository
+CORS Support for React frontend integration
 
-```bash
+Frontend Features
+React 18 with TypeScript
+
+Material-UI v5 for professional UI components
+
+JWT Authentication with protected routes
+
+CRUD Operations (Create, Read, Update, Delete)
+
+Responsive Design for all screen sizes
+
+Form Validation with real-time feedback
+
+Toast Notifications for user feedback
+
+Loading States for better UX
+
+Error Handling with graceful degradation
+
+🚀 Prerequisites
+Backend
+.NET SDK 10.0.201 or later
+
+SQL Server / SQL Server Express
+
+Visual Studio 2022 or Visual Studio Code
+
+Docker Desktop (optional)
+
+Frontend
+Node.js 18+ and npm
+
+Modern web browser
+
+🛠️ Technology Stack
+Backend Stack
+Technology	Version	Purpose
+ASP.NET Core Web API	10.0	REST API Framework
+Entity Framework Core	9.0	ORM
+SQL Server	2022	Database
+JWT Bearer Auth	Latest	Authentication
+FluentValidation	11.0	Input Validation
+AutoMapper	16.0	Object Mapping
+Serilog	Latest	Structured Logging
+Swashbuckle	6.5	API Documentation
+xUnit & Moq	Latest	Unit Testing
+Docker	Latest	Containerization
+Frontend Stack
+Technology	Version	Purpose
+React	18.0	UI Framework
+TypeScript	5.0	Type Safety
+Material-UI	5.14	UI Components
+Axios	1.6	HTTP Client
+React Router DOM	6.20	Routing
+Emotion	11.11	CSS-in-JS
+📂 Project Structure
+text
+StudentManagementSystem/
+├── 
+│   ├── StudentManagementSystem.API/           # Presentation Layer
+│   │   ├── Controllers/
+│   │   │   ├── AuthController.cs
+│   │   │   └── StudentsController.cs
+│   │   ├── Middleware/
+│   │   │   └── ExceptionHandlingMiddleware.cs
+│   │   ├── Program.cs
+│   │   ├── appsettings.json
+│   │   └── appsettings.Development.json
+│   │
+│   ├── StudentManagementSystem.Application/   # Application Layer
+│   │   ├── DTOs/
+│   │   │   ├── CreateStudentDto.cs
+│   │   │   ├── UpdateStudentDto.cs
+│   │   │   ├── StudentDto.cs
+│   │   │   ├── PaginatedResultDto.cs
+│   │   │   ├── LoginDto.cs
+│   │   │   └── ErrorResponseDto.cs
+│   │   ├── Interfaces/
+│   │   │   ├── IStudentService.cs
+│   │   │   └── IAuthService.cs
+│   │   ├── Services/
+│   │   │   ├── StudentService.cs
+│   │   │   └── AuthService.cs
+│   │   ├── Validators/
+│   │   │   ├── CreateStudentDtoValidator.cs
+│   │   │   └── UpdateStudentDtoValidator.cs
+│   │   ├── Mappings/
+│   │   │   └── MappingProfile.cs
+│   │   └── Common/
+│   │       └── Constants.cs
+│   │
+│   ├── StudentManagementSystem.Domain/        # Domain Layer
+│   │   ├── Entities/
+│   │   │   └── Student.cs
+│   │   ├── Interfaces/
+│   │   │   ├── IStudentRepository.cs
+│   │   │   └── IUnitOfWork.cs
+│   │   ├── Exceptions/
+│   │   │   ├── StudentNotFoundException.cs
+│   │   │   └── ValidationException.cs
+│   │   └── Common/
+│   │       └── BaseEntity.cs
+│   │
+│   ├── StudentManagementSystem.Infrastructure/ # Infrastructure Layer
+│   │   ├── Data/
+│   │   │   └── ApplicationDbContext.cs
+│   │   ├── Repositories/
+│   │   │   ├── StudentRepository.cs
+│   │   │   └── UnitOfWork.cs
+│   │   └── Migrations/
+│   │       └── InitialCreate.cs
+│   │
+│   ├── StudentManagementSystem.Tests/         # Test Project
+│   │   ├── UnitTests/
+│   │   │   └── StudentServiceTests.cs
+│   │   └── IntegrationTests/
+│   │
+│   ├── Dockerfile
+│   ├── docker-compose.yml
+│   └── StudentManagementSystem.sln
+│
+└── Frontend/
+    ├── student-management-ui/
+    │   ├── src/
+    │   │   ├── api/
+    │   │   │   └── apiClient.ts
+    │   │   ├── components/
+    │   │   │   ├── Login.tsx
+    │   │   │   ├── StudentList.tsx
+    │   │   │   └── StudentForm.tsx
+    │   │   ├── types/
+    │   │   │   └── index.ts
+    │   │   ├── App.tsx
+    │   │   ├── App.css
+    │   │   └── index.tsx
+    │   ├── package.json
+    │   ├── tsconfig.json
+    │   └── README.md
+▶️ Installation & Running
+Backend Setup
+1. Clone the Repository
+bash
 git clone https://github.com/Pbg701/StudentManagementSystem.git
 cd StudentManagementSystem
-```
-
-### 2. Restore Dependencies
-
-```bash
+2. Restore Dependencies
+bash
+cd Backend
 dotnet restore
-```
+3. Configure Database Connection
+Update appsettings.json in StudentManagementSystem.API:
 
-### 3. Create Database
+json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=StudentManagementDb;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
+  },
+  "JwtSettings": {
+    "Key": "YourSuperSecretKeyForJWTTokenGeneration1234567890",
+    "Issuer": "StudentManagementAPI",
+    "Audience": "StudentManagementClient",
+    "DurationInMinutes": 60
+  }
+}
+4. Apply Migrations
+bash
+dotnet ef database update --project StudentManagementSystem.Infrastructure --startup-project StudentManagementSystem.API
+5. Run the Backend
+bash
+dotnet run --project StudentManagementSystem.API
+The API will be available at:
 
-```bash
-dotnet ef database update --project StudentManagementSystem.Infrastructure --startup-project StudentManagementSystem.Api
-```
+HTTPS: https://localhost:7133
 
-### 4. Run the API
+HTTP: http://localhost:5197
 
-```bash
-dotnet run --project StudentManagementSystem.Api
-```
+Swagger: https://localhost:7133/swagger
 
-### 5. Open Swagger
+Frontend Setup
+1. Navigate to Frontend Directory
+bash
+cd Frontend/student-management-ui
+2. Install Dependencies
+bash
+npm install
+3. Configure API URL
+Update src/api/apiClient.ts with your backend URL:
 
-```
-https://localhost:7133/swagger
-```
+typescript
+const API_BASE_URL = 'https://localhost:7133'; // Your backend API URL
+4. Run the Frontend
+bash
+npm start
+The React app will be available at http://localhost:3000
 
-or
+Docker Setup (Optional)
+Run with Docker Compose
+bash
+docker-compose up -d
+This will start:
 
-```
-http://localhost:5197/swagger
-```
+SQL Server container
 
-## 📂 Project Structure
-StudentManagementSystem/
-├── StudentManagementSystem.API/ # Presentation Layer
-│ ├── Controllers/ # API Endpoints
-│ │ ├── AuthController.cs
-│ │ └── StudentsController.cs
-│ ├── Middleware/ # Custom Middleware
-│ │ └── ExceptionHandlingMiddleware.cs
-│ ├── Program.cs # Application Entry Point
-│ ├── appsettings.json # Configuration
-│ └── appsettings.Development.json
-├── StudentManagementSystem.Application/ # Application Layer
-│ ├── DTOs/ # Data Transfer Objects
-│ │ ├── CreateStudentDto.cs
-│ │ ├── UpdateStudentDto.cs
-│ │ ├── StudentDto.cs
-│ │ ├── PaginatedResultDto.cs
-│ │ ├── LoginDto.cs
-│ │ └── ErrorResponseDto.cs
-│ ├── Interfaces/ # Service Interfaces
-│ │ ├── IStudentService.cs
-│ │ └── IAuthService.cs
-│ ├── Services/ # Business Logic
-│ │ ├── StudentService.cs
-│ │ └── AuthService.cs
-│ ├── Validators/ # FluentValidation
-│ │ ├── CreateStudentDtoValidator.cs
-│ │ └── UpdateStudentDtoValidator.cs
-│ ├── Mappings/ # AutoMapper Profiles
-│ │ └── MappingProfile.cs
-│ └── Common/ # Common Utilities
-│ └── Constants.cs
-├── StudentManagementSystem.Domain/ # Domain Layer
-│ ├── Entities/ # Domain Entities
-│ │ └── Student.cs
-│ ├── Interfaces/ # Repository Interfaces
-│ │ ├── IStudentRepository.cs
-│ │ └── IUnitOfWork.cs
-│ ├── Exceptions/ # Custom Exceptions
-│ │ ├── StudentNotFoundException.cs
-│ │ └── ValidationException.cs
-│ └── Common/ # Common Domain
-│ └── BaseEntity.cs
-├── StudentManagementSystem.Infrastructure/ # Infrastructure Layer
-│ ├── Data/ # DbContext
-│ │ └── ApplicationDbContext.cs
-│ ├── Repositories/ # Repository Implementation
-│ │ ├── StudentRepository.cs
-│ │ └── UnitOfWork.cs
-│ └── Migrations/ # EF Core Migrations
-│ └── InitialCreate.cs
-├── StudentManagementSystem.Tests/ # Test Project
-│ ├── UnitTests/ # Unit Tests
-│ │ └── StudentServiceTests.cs
-│ └── IntegrationTests/ # Integration Tests
-├── .dockerignore
-├── Dockerfile # Docker Configuration
-├── docker-compose.yml # Docker Compose
-├── StudentManagementSystem.sln # Solution File
-├── .gitignore
-└── README.md # Documentation
+Backend API container
 
+Frontend React container
 
-## 👨‍💻 Author
+Access the application at:
 
-**Prashant Gaikwad**
+Frontend: http://localhost:3000
 
-Software Engineer | ASP.NET Core | C# | Entity Framework Core | SQL Server | Flutter
+Backend API: http://localhost:7133
 
-**GitHub:** https://github.com/Pbg701
+Swagger: http://localhost:7133/swagger
+
+🔐 Default Login Credentials
+Username	Password	Role
+admin	admin123	Administrator
+user	user123	User
+📝 API Endpoints
+Authentication
+Method	Endpoint	Description
+POST	/api/Auth/login	Authenticate user and get JWT token
+Students
+Method	Endpoint	Description	Auth Required
+GET	/api/Students	Get all students	Yes
+GET	/api/Students/{id}	Get student by ID	Yes
+POST	/api/Students	Create new student	Yes
+PUT	/api/Students/{id}	Update existing student	Yes
+DELETE	/api/Students/{id}	Delete student	Yes
+GET	/api/Students/paginated	Get paginated students	Yes
+GET	/api/Students/search	Search students	Yes
+🧪 Testing
+Backend Tests
+bash
+cd Backend
+dotnet test
+Frontend Tests
+bash
+cd Frontend/student-management-ui
+npm test
+🔒 Security Features
+JWT Token Authentication with expiration
+
+Role-based Authorization (Admin/User)
+
+Input Validation using FluentValidation
+
+SQL Injection Prevention via Entity Framework Core
+
+CORS Policy configured for frontend
+
+Password Hashing using BCrypt
+
+Audit Logging for all operations
+
+Global Exception Handling with structured responses
+
+Request/Response Logging with Serilog
+
+📊 Database Schema
+Student Table
+Column	Type	Description
+Id	INT	Primary Key, Auto Increment
+Name	NVARCHAR(100)	Student's full name
+Email	NVARCHAR(100)	Student's email (unique)
+Age	INT	Student's age (1-120)
+Course	NVARCHAR(100)	Student's course
+CreatedDate	DATETIME	Record creation timestamp
+UpdatedDate	DATETIME	Record update timestamp
+IsDeleted	BIT	Soft delete flag
+🎯 Key Features Demonstrated
+Backend
+✅ Clean Architecture implementation
+
+✅ Repository pattern with Unit of Work
+
+✅ DTOs and AutoMapper for data transfer
+
+✅ FluentValidation for request validation
+
+✅ Global exception handling middleware
+
+✅ Structured logging with Serilog
+
+✅ JWT authentication and authorization
+
+✅ Swagger/OpenAPI documentation
+
+✅ Pagination and search functionality
+
+✅ Soft delete support
+
+✅ Audit fields (CreatedDate, UpdatedDate)
+
+✅ Unit testing with xUnit and Moq
+
+✅ Docker containerization
+
+Frontend
+✅ Modern React with TypeScript
+
+✅ Professional Material-UI design
+
+✅ JWT token management
+
+✅ Protected routes
+
+✅ CRUD operations UI
+
+✅ Form validation
+
+✅ Toast notifications
+
+✅ Loading states
+
+✅ Responsive design
+
+✅ Error handling
+
+✅ API integration with Axios
+
+🤝 Contributing
+Fork the repository
+
+Create your feature branch (git checkout -b feature/AmazingFeature)
+
+Commit your changes (git commit -m 'Add some AmazingFeature')
+
+Push to the branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+👨‍💻 Author
+Prashant Gaikwad
+
+GitHub: @Pbg701
+
+LinkedIn: Prashant Gaikwad
+
+Email: prashantgaikwad701@gmail.com
+
+🙏 Acknowledgments
+Microsoft for ASP.NET Core
+
+React Team for the amazing UI library
+
+Material-UI for the beautiful components
+
+All open-source contributors
+
+📸 Screenshots
+Add screenshots here
+
+🎥 Demo
+Add demo video link here
+
+⚡ Quick Start
+Backend
+bash
+# Clone repo
+git clone https://github.com/Pbg701/StudentManagementSystem.git
+cd StudentManagementSystem
+
+# Restore packages
+dotnet restore
+
+# Update database
+dotnet ef database update --project StudentManagementSystem.Infrastructure --startup-project StudentManagementSystem.API
+
+# Run API
+dotnet run --project StudentManagementSystem.API
+Frontend
+bash
+cd ../Frontend/student-management-ui
+
+# Install dependencies
+npm install
+
+# Update API URL in src/api/apiClient.ts
+# Change API_BASE_URL to 'https://localhost:7133'
+
+# Run React app
+npm start
+Default User
+Username: admin
+
+Password: password
+
