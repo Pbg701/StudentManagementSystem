@@ -1,4 +1,5 @@
-🎓 Student Management System
+🎓 Student Management System -
+
 A comprehensive full-stack Student Management System built with ASP.NET Core Web API and React with Material-UI, following Clean Architecture principles and enterprise-grade best practices
 📋 Project Overview
 This project demonstrates a production-ready Student Management System with:
